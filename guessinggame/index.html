@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #game {
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+            margin-left: 5px;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎲 Number Guessing Game</h1>
+    <p>Guess a number between 1 and 100</p>
+
+    <div id="game">
+        <input type="number" id="guess" placeholder="Enter guess">
+        <button onclick="checkGuess()">Submit Guess</button>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        // Generate a random whole number between 0 and 99
+        let secretNumber = Math.floor(Math.random() * 100);
+
+        // Initialize the number of attempts to zero
+        let attempts = 0;
+
+        // Define a function to check the user's guess
+        function checkGuess() {
+            // Get the user's input from the HTML input element with id "guess"
+            let guess = document.getElementById("guess").value;
+
+            // Increment the attempt counter each time the function is called
+            attempts++;
+
+            // Check if the guess is exactly equal to the secret number
+            if (guess === secretNumber) {
+                // If correct, display a success message with the number and attempts
+                document.getElementById("message").innerText =
+                    "Correct! The number was " + secretNumber +
+                    ". You took " + attempts + " tries.";
+            }
+            // If the guess is higher than or equal to the secret number
+            else if (guess >= secretNumber) {
+                // Display a message telling the user the guess was too high
+                document.getElementById("message").innerText = "Too high! Try again.";
+            }
+            // If the guess is lower than the secret number
+            else {
+                // Display a message telling the user the guess was too low
+                document.getElementById("message").innerText = "Too low! Try again.";
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Leaderboard</h1>
+        <table id="leaderboard">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>Avatar</th>
+                    <th data-sort="first">First Name</th>
+                    <th data-sort="last">Last Name</th>
+                    <th data-sort="score">Score</th>
+                    <th data-sort="level">Level</th>
+                    <th data-sort="join_date">Join Date</th>
+                    <th data-sort="country">Country</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be inserted by JS -->
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button id="prev">Previous</button>
+            <span id="page-info"></span>
+            <button id="next">Next</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

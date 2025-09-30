@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Calculator Starter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .display {
+            width: 100%;
+            height: 40px;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 5px;
+            font-size: 1.2rem;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 60px);
+            gap: 10px;
+        }
+
+        button {
+            padding: 15px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            background: #ddd;
+        }
+
+        button:hover {
+            background: #ccc;
+        }
+
+        #prime {
+            background: #4CAF50;
+            color: white;
+            grid-column: span 2;
+        }
+
+        #prime:hover {
+            background: #57bc5c;
+        }
+
+        #equals {
+            background: #00d9ff;
+            color: white;
+            grid-column: span 2;
+        }
+
+        #equals:hover {
+            background: #87e3fc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <input type="text" id="display" class="display" disabled>
+        <div class="buttons">
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>/</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>*</button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>-</button>
+            <button>0</button>
+            <button>.</button>
+            <button>C</button>
+            <button>+</button>
+            <button id="prime">Prime</button>
+            <button id="equals">=</button>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById('display');
+        const buttons = document.querySelectorAll('button');
+        let currentInput = "";
+
+        function isPrime(num) {
+            num = parseInt(num);
+            if (isNaN(num) || num < 2) return false;
+            for (let i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        }
+
+
+
+
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const value = button.textContent;
+                if (value === 'Prime') {
+                    const num = parseInt(currentInput);
+                    if (isNaN(num)) {
+                        display.value = "Invalid";
+                    } else {
+                        display.value = isPrime(num) ? "Prime" : "Not Prime";
+                    }
+                    currentInput = ""; // Reset input after check
+                } else if (value === 'C') {
+                    currentInput = "";
+                    display.value = currentInput;
+                } else if (value === '=') {
+                    try {
+                        // Use eval function
+                        // old line: currentInput = evel(currentInput);
+                        currentInput = eval(currentInput);
+                        display.value = currentInput;
+                    } catch (error) {
+                        display.value = "Error";
+                    }
+                } else {
+                    currentInput += value;
+                    //Change innerText to value
+                    //old line: display.innerText = currentInput;
+                    display.value = currentInput;
+                }
+            });
+        });
+
+        // document.getElementById('prime').addEventListener('click', () => {
+        //     const num = parseInt(currentInput);
+        //     if (isNaN(num)) {
+        //         display.value = "Invalid";
+        //     } else {
+        //         display.value = isPrime(num) ? "Prime" : "Not Prime";
+        //     }
+        //     currentInput = ""; // Reset input after check
+        // });
+    </script>
+</body>
+
+</html>
